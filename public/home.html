@@ -1,0 +1,161 @@
+  <div class="nav">
+    <h2>Reddit Clone </h2>
+    <h3 class="pointer" ng-click="showme = !showme"> Submit Post</h3>
+    <input type="text" placeholder="Search" ng-model="searchPost">
+    <select class="btn btn-primary" ng-model="option">
+      <option disabled selected value> Select </option>
+      <option value="title">Title</option>
+      <option value="-votes">Votes</option>
+    </select>
+  </div>
+  <div class="container">
+    <div ng-show="showme">
+      <form class="mainForm" action="#" name="postForm" ng-submit="postForm.$valid && submitForm($event)" novalidate>
+
+        <h3>New Post</h3>
+
+        <div class="form-group" ng-class="{'has-error': postForm.title.$touched && postForm.title.$invalid, 'has-success': postForm.title.$touched && postForm.title.$valid}">
+
+          <input type="text"
+          name="title"
+          class="form-control"
+          ng-model="views.userForm.title"
+          placeholder="Title"
+          ng-minlength="3"
+          required
+          >
+
+          <div class="error" ng-messages="postForm.title.$error" ng-show="postForm.title.$touched">
+            <div ng-messages-include="messages.html"></div>
+          </div>
+        </div>
+
+        <div class="form-group" ng-class="{'has-error': postForm.author.$touched && postForm.author.$invalid, 'has-success': postForm.author.$touched && postForm.author.$valid}">
+          <input type="text"
+          name="author"
+          class="form-control"
+          ng-model="views.userForm.author"
+          placeholder="Author"
+          ng-minlength="3"
+          required
+          >
+
+          <div class="error" ng-messages="postForm.author.$error" ng-show="postForm.author.$touched">
+            <div ng-messages-include="messages.html"></div>
+          </div>
+        </div>
+
+        <div class="form-group" ng-class="{'has-error': postForm.description.$touched && postForm.description.$invalid, 'has-success': postForm.description.$touched && postForm.description.$valid}">
+          <input type="text"
+          name="description"
+          class="form-control"
+          ng-model="views.userForm.description"
+          placeholder="Description"
+          ng-minlength="3"
+          required
+          >
+
+          <div class="error" ng-messages="postForm.description.$error" ng-show="postForm.description.$touched">
+            <div ng-messages-include="messages.html"></div>
+          </div>
+        </div>
+
+        <input type="submit" value="Submit" class="btn btn-primary" ng-click="showme=false">
+      </form>
+    </div>
+
+    <div class="postBox fadePost" ng-repeat="user in views.info | orderBy: '-votes' | orderBy: option | filter: searchPost">
+    <div class="votesNavFlex">
+      <h5 ng-style="{'color': user.votes == 0 ? 'black' : user.votes > 0 ? 'green' : 'red'}">{{ user.votes }}</h5>
+      <h5 class="pointer" ng-click="user.votes = user.votes + 1"><i class="fa fa-angle-up" aria-hidden="true"></i></h5>
+      <h5 class="pointer" ng-click="user.votes = user.votes - 1"><i class="fa fa-angle-down" aria-hidden="true"></i></h5>
+    </div>
+     <h3>{{user.title}}</h3>
+     <h6>By: {{user.author}}</h6>
+     <h5>{{user.description}}</h5>
+     <div class="innerPostBottomNav">
+       <p>{{rightNow | date:'EEEE, MMMM d, y'}}</p> <span> | </span>
+       <p class="pointer" ng-click="showmeComments = !showmeComments; getComments(user.id)">Show Comments</p> <span> | </span>
+       <p class="pointer" ng-click="showmeCommentForm = !showmeCommentForm">Add Comment</p>
+     </div>
+     <div class="bottomNavFlex" ng-show="showmeComments" ng-repeat="comment in views.comments">
+       <p><strong>{{ comment.author }}:</strong></p>
+       <p> {{ comment.comment }} </p>
+     </div>
+     <button class="btn btn-warning button" ng-click="editing = !editing">Edit</button>
+     <button class="btn btn-danger button" ng-click="deleteUser(user.id)">Delete</button>
+
+
+     <div ng-show="editing">
+       <form class="mainForm" action="#" name="editPostForm" ng-submit="editPostForm.$valid && editPost($event, user.id)" novalidate>
+
+         <h3>Edit Post</h3>
+
+         <div class="form-group" ng-class="{'has-error': editPostForm.title.$touched && editPostForm.title.$invalid, 'has-success': editPostForm.title.$touched && editPostForm.title.$valid}">
+           <input type="text"
+           name="title"
+           class="form-control"
+           ng-model="views.userForm.title"
+           placeholder="Title"
+           ng-minlength="3"
+           required
+           >
+
+           <div class="error" ng-messages="editPostForm.title.$error" ng-show="editPostForm.title.$touched">
+             <div ng-messages-include="messages.html"></div>
+           </div>
+         </div>
+
+         <div class="form-group" ng-class="{'has-error': editPostForm.author.$touched && editPostForm.author.$invalid, 'has-success': editPostForm.author.$touched && editPostForm.author.$valid}">
+           <input type="text"
+           name="author"
+           class="form-control"
+           ng-model="views.userForm.author"
+           placeholder="Author"
+           ng-minlength="3"
+           required
+           >
+
+           <div class="error" ng-messages="editPostForm.author.$error" ng-show="editPostForm.author.$touched">
+             <div ng-messages-include="messages.html"></div>
+           </div>
+         </div>
+
+         <div class="form-group" ng-class="{'has-error': editPostForm.description.$touched && editPostForm.description.$invalid, 'has-success': editPostForm.description.$touched && editPostForm.description.$valid}">
+           <input type="text"
+           name="description"
+           class="form-control"
+           ng-model="views.userForm.description"
+           placeholder="Description"
+           ng-minlength="3"
+           required
+           >
+
+           <div class="error" ng-messages="editPostForm.description.$error" ng-show="editPostForm.description.$touched">
+             <div ng-messages-include="messages.html"></div>
+           </div>
+         </div>
+
+         <input type="submit" value="Submit" class="btn btn-primary" ng-click="editing=false">
+       </form>
+     </div>
+
+     <div ng-show="showmeCommentForm">
+       <form class="commentForm" action="#" name="commentForm" ng-submit="commentForm.$valid && submitFormComment($event, user.id)" novalidate>
+         <input type="text"
+         name="authorComment"
+         ng-model="views.userCommentForm.author"
+         placeholder="Author"
+         required
+         >
+         <input type="text"
+         name="comment"
+         ng-model="views.userCommentForm.comment"
+         placeholder="Comment"
+         required
+         >
+         <input type="submit" value="Submit" class="btn btn-primary" ng-click="showmeCommentForm=false">
+       </form>
+      </div>
+  </div>
+  </div>
