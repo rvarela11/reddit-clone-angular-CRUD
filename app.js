@@ -10,6 +10,10 @@ var comments = require('./routes/comments');
 
 var app = express();
 
+app.get('/', function(req, res) {
+  res.sendfile('index.html', {root: __dirname});
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
