@@ -51,6 +51,10 @@ app.controller('MainController', ['$scope', 'firstService', function($scope,
     });
   }
 
+  // --------------------
+  // ----- COMMENTS -----
+  // --------------------
+
   $scope.views.userCommentForm = {
     author: "",
     comment: "",
@@ -58,9 +62,7 @@ app.controller('MainController', ['$scope', 'firstService', function($scope,
   };
 
   $scope.getComments = function(id) {
-    console.log(id);
     firstService.getComments(id).then(function(info) {
-      console.log(info.data);
       $scope.views.comments = info.data;
     });
   }
@@ -75,6 +77,24 @@ app.controller('MainController', ['$scope', 'firstService', function($scope,
           comment: ""
         };
       });
+  };
+
+  $scope.editComment = function(event, postId, commentId) {
+    event.preventDefault();
+    $scope.views.userCommentForm.post_id = postId;
+    firstService.editComment($scope.views.userCommentForm, commentId).then(function(msg) {
+      $scope.views.userForm = {
+        author: "",
+        comment: ""
+      };
+      $scope.getComments(postId);
+    });
+  }
+
+  $scope.deleteComment = function (postId, commentId) {
+    firstService.deleteComment(commentId).then(function(msg) {
+      $scope.getComments(postId);
+    });
   };
 
 }]);

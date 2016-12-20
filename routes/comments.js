@@ -19,26 +19,24 @@ router.post('/', function(req, res) {
   });
 });
 
-// router.put('/:id', function(req, res) {
-//   knex('posts').where({
-//     id: req.params.id
-//   }).update({
-//     title: req.body.title,
-//     author: req.body.author,
-//     description: req.body.description,
-//     votes: 0
-//   }).then(function(msg) {
-//     res.json(msg);
-//   });
-// });
-//
-// router.delete('/:id', function(req, res) {
-//   knex('posts').where({
-//     id: req.params.id
-//   }).del().then(function(msg) {
-//     res.json(msg);
-//   });
-// });
+router.put('/:id', function(req, res) {
+  knex('comments').where({
+    id: req.params.id
+  }).update({
+    author: req.body.author,
+    comment: req.body.comment,
+    post_id: parseInt(req.body.post_id)
+  }).then(function(msg) {
+    res.json(msg);
+  });
+});
 
+router.delete('/:id', function(req, res) {
+  knex('comments').where({
+    id: req.params.id
+  }).del().then(function(msg) {
+    res.json(msg);
+  });
+});
 
 module.exports = router;

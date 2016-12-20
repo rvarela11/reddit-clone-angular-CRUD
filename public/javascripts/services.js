@@ -14,10 +14,16 @@ app.factory("firstService", function($http) {
       return $http.delete('/api/posts/' + postId);
     },
     getComments: function(postId) {
-      return $http.get('/api/comments/postfound/' + postId);
+      return $http.get('/api/comments/post/' + postId);
     },
     createComment: function(newComment) {
       return $http.post('/api/comments', newComment)
+    },
+    editComment: function(postEditData, commentId) {
+      return $http.put('/api/comments/' + commentId, postEditData); 
+    },
+    deleteComment: function(commentId) {
+      return $http.delete('/api/comments/' + commentId);
     }
   }
 
