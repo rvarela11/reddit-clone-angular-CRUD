@@ -11,7 +11,7 @@ var comments = require('./routes/comments');
 var app = express();
 
 app.get('/', function(req, res) {
-  res.sendfile('index.html', {root: __dirname});
+  res.sendfile('index.html', {root: path.join(__dirname, 'public')});
 });
 
 // view engine setup
