@@ -1,14 +1,21 @@
   <div class="nav">
-    <h2>Reddit Clone </h2>
-    <h3 class="pointer" ng-click="showme = !showme"> Submit Post</h3>
-    <input type="text" placeholder="Search" ng-model="searchPost">
-    <select class="btn btn-primary" ng-model="option">
-      <option disabled selected value> Select </option>
-      <option value="title">Title</option>
-      <option value="-votes">Votes</option>
-    </select>
+    <img class="img-logo" src="./images/reddit-two-clones.jpg" alt="Reddit Clones" />
+    <h1>Reddit Clone </h1>
   </div>
+
   <div class="container">
+
+    <div>
+      <h3 class="pointer submit" ng-click="showme = !showme"> Submit Post</h3>
+      <input class="search-posts" type="text" placeholder="Search" ng-model="searchPost">
+      <select class="btn btn-primary dropdown-filter" ng-model="option">
+        <option disabled selected value> Select </option>
+        <option value="title">Title</option>
+        <option value="-votes">Votes</option>
+      </select>
+    </div>
+
+
     <div ng-show="showme">
       <form class="mainForm" action="#" name="postForm" ng-submit="postForm.$valid && submitForm($event)" novalidate>
 
@@ -161,7 +168,7 @@
      </div>
 
 
-     <div ng-show="showmeCommentForm">
+     <div class="comment-form-div"ng-show="showmeCommentForm">
        <form class="commentForm" action="#" name="commentForm" ng-submit="commentForm.$valid && submitFormComment($event, user.id)" novalidate>
          <input type="text"
          name="authorComment"

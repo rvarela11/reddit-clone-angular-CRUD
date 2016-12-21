@@ -1,28 +1,39 @@
 
 /*----------------------- NAV -----------------------*/
 
+.img-logo {
+  width: 140px;
+  height: 100px;
+}
+
 .nav {
   display: flex;
   margin-top: 2%;
-  padding-bottom: 1%;
   padding-left: 1%;
   border-bottom: 1px solid #ccc;
 }
 
-.nav h2,h3 {
-  margin: 0;
-  margin-right: 2%;
+.nav h1{
   display: flex;
-  /*justify-content: center;*/
   align-items: center;
+  font-size: 4em;
 }
 
-.nav input[type=text] {
-  margin-right: 2%;
-}
-
-.pointer {
+.pointer{
   cursor: pointer;
+}
+
+.submit {
+  display: inline-block;
+}
+
+.search-posts {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-filter {
+  margin-top: 1%;
 }
 
 /*----------------------- POST FORM -----------------------*/
@@ -81,6 +92,10 @@
 }
 
 /*----------------------- COMMENT FEED -----------------------*/
+
+.comment-form-div {
+  margin-top: 1%;
+}
 
 .bottomNavFlex {
   display: flex;
