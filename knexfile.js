@@ -8,6 +8,11 @@ module.exports = {
       host: 'localhost',
       database: 'rca2-dev'
     }
+  },
+  production: {
+    client: 'pg',
+    connection: 'process.env.DATABASE_URL'
   }
+
 
 };
