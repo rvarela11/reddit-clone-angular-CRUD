@@ -1,3 +1,6 @@
+.container:nth-child(1n+2) {
+  margin-bottom: 5%;
+}
 
 /*----------------------- NAV -----------------------*/
 
@@ -5,26 +8,30 @@
   width: 140px;
   height: 100px;
 }
+.outside_nav {
+  border-bottom: 1px solid #ccc;
+}
 
 .nav {
   display: flex;
   margin-top: 2%;
-  padding-left: 1%;
-  border-bottom: 1px solid #ccc;
 }
 
 .nav h1{
   display: flex;
   align-items: center;
-  font-size: 4em;
+  font-size: 2em;
 }
 
 .pointer{
   cursor: pointer;
 }
-
+.fa-plus-square-o {
+  margin-right: 2%;
+}
 .submit {
   display: inline-block;
+  width: 100%;
 }
 
 .search-posts {
@@ -154,4 +161,62 @@ padding-left: 0;
 
 .fadePost.ng-leave.ng-leave-active {
   opacity: 0;
+}
+
+/*----------------------- RESPONSIVE GENERAL -----------------------*/
+
+@media screen and (max-width: 450px) {
+  .nav h1 {
+    font-size: 1.5rem;
+  }
+  .img-logo {
+    margin-left: 1%;
+    width: 80px;
+    height: 60px;
+  }
+  .container {
+    width: 100%;
+  }
+  .submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0 0 0 ;
+  }
+  .search-posts {
+    border: 1px solid #ccc;
+  }
+  input[type="text"] {
+    width: 100%;
+    margin: 5px 0;
+  }
+  .dropdown-filter {
+    display: flex;
+    margin: auto;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  h3 {
+    margin: 5px 0;
+  }
+  .mainForm input[type=submit] {
+    width: 100%;
+  }
+  .votesNavFlex h5 {
+    margin: 0;
+    font-size: 2rem;
+  }
+  .votesNavFlex h5:nth-child(1n+2) {
+    padding-left: 7%;
+  }
+  .innerPostBottomNav {
+    font-size: 12px;
+  }
+  .span_comments {
+    display: none;
+  }
+  .postBox {
+    padding: 2%;
+  }
+
 }

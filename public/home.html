@@ -1,12 +1,14 @@
-  <div class="nav">
-    <img class="img-logo" src="./images/reddit-two-clones.jpg" alt="Reddit Clones" />
-    <h1>Reddit Clone </h1>
+  <div class="outside_nav">
+    <div class="nav container">
+      <img class="img-logo" src="./images/reddit-two-clones.jpg" alt="Reddit Clones" />
+      <h1>Reddit Clone </h1>
+    </div>
   </div>
 
   <div class="container">
 
-    <div>
-      <h3 class="pointer submit" ng-click="showme = !showme"> Submit Post</h3>
+    <div class="div_filters">
+      <h3 class="pointer submit" ng-click="showme = !showme"> <i class="fa fa-plus-square-o" aria-hidden="true"></i>Submit Post</h3>
       <input class="search-posts" type="text" placeholder="Search" ng-model="searchPost">
       <select class="btn btn-primary dropdown-filter" ng-model="option">
         <option disabled selected value> Select </option>
@@ -74,7 +76,7 @@
     <div class="postBox fadePost" ng-repeat="user in views.info | orderBy: '-votes' | orderBy: option | filter: searchPost">
     <div class="votesNavFlex">
       <h5 ng-style="{'color': user.votes == 0 ? 'black' : user.votes > 0 ? 'green' : 'red'}">{{ user.votes }}</h5>
-      <h5 class="pointer" ng-click="user.votes = user.votes + 1"><i class="fa fa-angle-up" aria-hidden="true"></i></h5>
+      <h5 class="pointer arrow_votes" ng-click="user.votes = user.votes + 1"><i class="fa fa-angle-up" aria-hidden="true"></i></h5>
       <h5 class="pointer" ng-click="user.votes = user.votes - 1"><i class="fa fa-angle-down" aria-hidden="true"></i></h5>
     </div>
      <h3>{{user.title}}</h3>
@@ -83,8 +85,8 @@
      <div class="innerPostBottomNav">
        <p>{{rightNow | date:'EEEE, MMMM d, y'}}</p> <span> | </span>
        <!-- <p class="pointer" ng-click="showmeComments = !showmeComments; getComments(user.id)">Show Comments</p> <span> | </span> -->
-       <p class="pointer" ng-click="showmeComments = !showmeComments; getComments(user.id)">Show Comments</p> <span> | </span>
-       <p class="pointer" ng-click="showmeCommentForm = !showmeCommentForm">Add Comment</p>
+       <p class="pointer" ng-click="showmeComments = !showmeComments; getComments(user.id)">Show <span class="span_comments">Comments</span></p> <span> | </span>
+       <p class="pointer" ng-click="showmeCommentForm = !showmeCommentForm">Add <span class="span_comments">Comments</span></p>
      </div>
      <button class="btn btn-warning button" ng-click="editing = !editing">Edit</button>
      <button class="btn btn-danger button" ng-click="deleteUser(user.id)">Delete</button>
