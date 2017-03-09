@@ -1,28 +1,28 @@
-  <div class="outside_nav">
-    <div class="nav container">
-      <img class="img-logo" src="./images/reddit-two-clones.jpg" alt="Reddit Clones" />
+  <header>
+    <nav class="container">
+      <img class="nav__img-logo" src="./images/reddit-two-clones.jpg" alt="Reddit Clones" />
       <h1>Reddit Clone </h1>
-    </div>
-  </div>
+    </nav>
+  </header>
 
   <div class="container">
 
-    <div class="div_filters">
-      <h3 class="pointer submit" ng-click="showme = !showme"> <i class="fa fa-plus-square-o" aria-hidden="true"></i>Submit Post</h3>
-      <input class="search-posts" type="text" placeholder="Search" ng-model="searchPost">
-      <select class="btn btn-primary dropdown-filter" ng-model="option">
+    <div class="filters">
+      <h3 ng-click="showSubmitPost = !showSubmitPost"> <i class="fa fa-plus-square-o" aria-hidden="true"></i>Submit Post</h3>
+      <input class="filters__search-post" type="text" placeholder="Search" ng-model="searchPost">
+      <select class="btn btn-primary filters__dropdown" ng-model="option">
         <option disabled selected value> Select </option>
         <option value="title">Title</option>
         <option value="-votes">Votes</option>
       </select>
     </div>
 
+    <!-- Start Submit Post Form.
+    This will be hidden until the "Submit Post" h3 is clicked -->
 
-    <div ng-show="showme">
-      <form class="mainForm" action="#" name="postForm" ng-submit="postForm.$valid && submitForm($event)" novalidate>
-
+    <div ng-show="showSubmitPost">
+      <form action="#" name="postForm" ng-submit="postForm.$valid && submitForm($event)" novalidate>
         <h3>New Post</h3>
-
         <div class="form-group" ng-class="{'has-error': postForm.title.$touched && postForm.title.$invalid, 'has-success': postForm.title.$touched && postForm.title.$valid}">
 
           <input type="text"
@@ -33,7 +33,6 @@
           ng-minlength="3"
           required
           >
-
           <div class="error" ng-messages="postForm.title.$error" ng-show="postForm.title.$touched">
             <div ng-messages-include="messages.html"></div>
           </div>
@@ -48,7 +47,6 @@
           ng-minlength="3"
           required
           >
-
           <div class="error" ng-messages="postForm.author.$error" ng-show="postForm.author.$touched">
             <div ng-messages-include="messages.html"></div>
           </div>
@@ -63,15 +61,16 @@
           ng-minlength="3"
           required
           >
-
           <div class="error" ng-messages="postForm.description.$error" ng-show="postForm.description.$touched">
             <div ng-messages-include="messages.html"></div>
           </div>
         </div>
 
-        <input type="submit" value="Submit" class="btn btn-primary" ng-click="showme=false">
+        <input type="submit" value="Submit" class="btn btn-primary" ng-click="showSubmitPost=false">
       </form>
     </div>
+
+    <!-- End Submit Post Form -->
 
     <div class="postBox fadePost" ng-repeat="user in views.info | orderBy: '-votes' | orderBy: option | filter: searchPost">
     <div class="votesNavFlex">

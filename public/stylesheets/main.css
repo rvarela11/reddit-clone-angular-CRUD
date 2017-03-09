@@ -1,62 +1,67 @@
+
+/*.pointer{
+  cursor: pointer;
+}
+.submit {
+  display: inline-block;
+  width: 100%;
+  cursor: pointer;
+}*/
+
 .container:nth-child(1n+2) {
   margin-bottom: 5%;
 }
 
-/*----------------------- NAV -----------------------*/
+/*----------------------- HEADER/NAV -----------------------*/
 
-.img-logo {
-  width: 140px;
-  height: 100px;
-}
-.outside_nav {
+header {
   border-bottom: 1px solid #ccc;
 }
-
-.nav {
+nav {
   display: flex;
-  margin-top: 2%;
+  margin-top: 1%;
 }
-
-.nav h1{
+.nav__img-logo {
+  width: 100px;
+  height: 70px;
+}
+nav h1{
   display: flex;
   align-items: center;
   font-size: 2em;
 }
 
-.pointer{
+/*----------------------- FILTERS -----------------------*/
+
+.filters h3 {
+  display: inline-block;
+  width: 100%;
   cursor: pointer;
 }
 .fa-plus-square-o {
   margin-right: 2%;
 }
-.submit {
-  display: inline-block;
-  width: 100%;
-}
-
-.search-posts {
+.filters__search-post {
   display: flex;
   flex-direction: column;
 }
-
-.dropdown-filter {
+.filters__dropdown {
   margin-top: 1%;
 }
 
-/*----------------------- POST FORM -----------------------*/
+/*----------------------- SUBMIT POST FORM -----------------------*/
 
 .edit-form-div h3 {
   margin: 2%;
   margin-left: 0;
 }
 
-.mainForm {
+form {
   margin-top: 2%;
   display: flex;
   flex-direction: column;
 }
-
-.mainForm input[type=submit] {
+form input[type=submit] {
   width: 10%;
 }
 
@@ -169,7 +174,7 @@ padding-left: 0;
   .nav h1 {
     font-size: 1.5rem;
   }
-  .img-logo {
+  .nav__img-logo {
     margin-left: 1%;
     width: 80px;
     height: 60px;
@@ -183,14 +188,14 @@ padding-left: 0;
     align-items: center;
     margin: 10px 0 0 0 ;
   }
-  .search-posts {
+  .filters__search-post {
     border: 1px solid #ccc;
   }
   input[type="text"] {
     width: 100%;
     margin: 5px 0;
   }
-  .dropdown-filter {
+  .filters__dropdown {
     display: flex;
     margin: auto;
     margin-bottom: 10px;
