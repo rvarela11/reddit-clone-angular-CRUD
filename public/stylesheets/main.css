@@ -1,15 +1,8 @@
 
-/*.pointer{
-  cursor: pointer;
-}
-.submit {
-  display: inline-block;
-  width: 100%;
-  cursor: pointer;
-}*/
+
 
 .container:nth-child(1n+2) {
-  margin-bottom: 5%;
+  margin-bottom: 2%;
 }
 
 /*----------------------- HEADER/NAV -----------------------*/
@@ -51,11 +44,6 @@ nav h1{
 
 /*----------------------- SUBMIT POST FORM -----------------------*/
 
-.edit-form-div h3 {
-  margin: 2%;
-  margin-left: 0;
-}
-
 form {
   margin-top: 2%;
   display: flex;
@@ -77,116 +65,102 @@ form input[type=submit] {
 
 /*----------------------- POST FEED -----------------------*/
 
-.postBox {
+.post-box {
   border: 1px solid #ccc;
   padding: 1%;
   margin-top: 2%;
 }
-
-.innerPostBottomNav {
+.post-box__votes {
   display: flex;
 }
-
-.innerPostBottomNav p {
+.post-box__votes h5:nth-child(1n+2) {
+  padding-left: 1%;
+  cursor: pointer;
+}
+.post-box__comments {
+  display: flex;
+}
+.post-box__comments p {
   padding-right: 1%;
 }
-
-.innerPostBottomNav p:nth-child(1n+2) {
+.post-box__comments p:nth-child(1n+2) {
   padding-left: 1%;
+  cursor: pointer;
 }
-
-.commentsP {
-  margin-left: 3%;
-}
-
 .button {
   width: 7rem;
 }
 
-/*----------------------- COMMENT FEED -----------------------*/
-
-.comment-form-div {
-  margin-top: 1%;
-}
-
-.bottomNavFlex {
-  display: flex;
-  margin-top: 2%;
-}
-
-.bottomNavFlex p:nth-child(2) {
-  padding-left: 1%;
-}
-
-.comment-button {
-background-color: transparent;
-border: none;
-cursor: pointer;
-color: #000;
-margin-left: 0;
-padding-left: 0;
-}
-
-.comment-button-edit {
-  color: #f0ad4e;
-}
-
-.comment-button-delete {
-  color: #d9534f;
-}
-
-/*----------------------- VOTES -----------------------*/
-
-.votesNavFlex {
-  display: flex;
-}
-
-.votesNavFlex h5:nth-child(1n+2) {
-  padding-left: 1%;
-}
-
 /*----------------------- SEARCH ANNIMATION -----------------------*/
 
-.fadePost {
+.post-box--fade {
   transition:all 1s linear;
   -webkit-transition: all 1s linear ;
 }
-
-.fadePost.ng-enter {
+.post-box--fade.ng-enter {
+  opacity: 0;
+}
+.post-box--fade.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+.post-box--fade.ng-leave {
+  opacity: 1;
+}
+.post-box--fade.ng-leave.ng-leave-active {
   opacity: 0;
 }
 
-.fadePost.ng-enter.ng-enter-active {
-  opacity: 1;
-}
+/*----------------------- COMMENT FEED -----------------------*/
 
-.fadePost.ng-leave {
-  opacity: 1;
+.comments {
+  display: flex;
+  margin-top: 2%;
 }
-
-.fadePost.ng-leave.ng-leave-active {
-  opacity: 0;
+.comments p:nth-child(2) {
+  padding-left: 1%;
+}
+.comment-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #000;
+  margin-left: 0;
+  padding-left: 0;
+}
+.comment-button__edit {
+  color: #f0ad4e;
+}
+.comment-button__delete {
+  color: #d9534f;
+}
+.edit-comment-form h3,
+.edit-post-form h3 {
+  margin: 2%;
+  margin-left: 0;
+}
+.add-comment-form {
+  margin-top: 1%;
+}
+.add-comment-form form input:last-child {
+  margin-top: 1%;
 }
 
 /*----------------------- RESPONSIVE GENERAL -----------------------*/
 
 @media screen and (max-width: 450px) {
-  .nav h1 {
+  .container {
+    width: 100%;
+  }
+  h3 {
+    margin: 5px 0;
+  }
+  nav h1 {
     font-size: 1.5rem;
   }
   .nav__img-logo {
     margin-left: 1%;
     width: 80px;
     height: 60px;
-  }
-  .container {
-    width: 100%;
-  }
-  .submit {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10px 0 0 0 ;
   }
   .filters__search-post {
     border: 1px solid #ccc;
@@ -201,27 +175,23 @@ padding-left: 0;
     margin-bottom: 10px;
     text-align: center;
   }
-  h3 {
-    margin: 5px 0;
-  }
-  .mainForm input[type=submit] {
+  form input[type=submit] {
     width: 100%;
   }
-  .votesNavFlex h5 {
+  .post-box__votes h5 {
     margin: 0;
     font-size: 2rem;
   }
-  .votesNavFlex h5:nth-child(1n+2) {
+  .post-box__votes h5:nth-child(1n+2) {
     padding-left: 7%;
   }
-  .innerPostBottomNav p:nth-child(1n+2) {
+  .post-box__comments p:nth-child(1n+2) {
     padding-left: 3%;
   }
-  .span_comments {
+  .post-box__comments--display {
     display: none;
   }
-  .postBox {
+  .post-box {
     padding: 2%;
   }
-
 }

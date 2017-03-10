@@ -72,31 +72,36 @@
 
     <!-- End Submit Post Form -->
 
-    <div class="postBox fadePost" ng-repeat="user in views.info | orderBy: '-votes' | orderBy: option | filter: searchPost">
-    <div class="votesNavFlex">
+    <div class="post-box post-box--fade" ng-repeat="user in views.info | orderBy: '-votes' | orderBy: option | filter: searchPost">
+    <div class="post-box__votes">
       <h5 ng-style="{'color': user.votes == 0 ? 'black' : user.votes > 0 ? 'green' : 'red'}">{{ user.votes }}</h5>
-      <h5 class="pointer arrow_votes" ng-click="user.votes = user.votes + 1"><i class="fa fa-angle-up" aria-hidden="true"></i></h5>
-      <h5 class="pointer" ng-click="user.votes = user.votes - 1"><i class="fa fa-angle-down" aria-hidden="true"></i></h5>
+      <h5 ng-click="user.votes = user.votes + 1"><i class="fa fa-angle-up" aria-hidden="true"></i></h5>
+      <h5 ng-click="user.votes = user.votes - 1"><i class="fa fa-angle-down" aria-hidden="true"></i></h5>
     </div>
      <h3>{{user.title}}</h3>
      <h6>By: {{user.author}}</h6>
      <h5>{{user.description}}</h5>
-     <div class="innerPostBottomNav">
+     <div class="post-box__comments">
        <p>{{rightNow | date:'EEEE, MMMM d, y'}}</p> <span> | </span>
-       <!-- <p class="pointer" ng-click="showmeComments = !showmeComments; getComments(user.id)">Show Comments</p> <span> | </span> -->
-       <p class="pointer" ng-click="showmeComments = !showmeComments; getComments(user.id)">Show <span class="span_comments">Comments</span></p> <span> | </span>
-       <p class="pointer" ng-click="showmeCommentForm = !showmeCommentForm">Add <span class="span_comments">Comments</span></p>
+       <p ng-click="showmeComments = !showmeComments; getComments(user.id)">Show <span class="post-box__comments--display">Comments</span></p> <span> | </span>
+       <p ng-click="showmeCommentForm = !showmeCommentForm">Add <span class="post-box__comments--display">Comments</span></p>
      </div>
      <button class="btn btn-warning button" ng-click="editing = !editing">Edit</button>
      <button class="btn btn-danger button" ng-click="deleteUser(user.id)">Delete</button>
-     <div class="bottomNavFlexOutside" ng-show="showmeComments" ng-repeat="comment in views.comments">
-       <div class="bottomNavFlex">
+
+     <!-- Comments feed. This is inside the post-box div -->
+
+     <div ng-show="showmeComments" ng-repeat="comment in views.comments">
+       <div class="comments">
          <p><strong>{{ comment.author }}:</strong></p>
          <p> {{ comment.comment }} </p>
        </div>
-         <button class="comment-button comment-button-edit" ng-click="editingComment = !editingComment">Edit</button>
-         <button class="comment-button comment-button-delete" ng-click="deleteComment(user.id, comment.id)">Delete</button>
-         <div ng-show="editingComment" class="edit-form-div">
+         <button class="comment-button comment-button__edit" ng-click="editingComment = !editingComment">Edit</button>
+         <button class="comment-button comment-button__delete" ng-click="deleteComment(user.id, comment.id)">Delete</button>
+
+         <!-- Edit Comment Form -->
+
+         <div ng-show="editingComment" class="edit-comment-form">
            <h3>Edit Comment</h3>
            <form class="mainForm" action="#" name="editCommentForm" ng-submit="editCommentForm.$valid && editComment($event, user.id, comment.id)" novalidate>
             <div class="form-group">
@@ -122,7 +127,9 @@
          </div>
      </div>
 
-     <div ng-show="editing" class="edit-form-div">
+     <!-- Edit Post Form -->
+
+     <div ng-show="editing" class="edit-post-form">
        <h3>Edit Post</h3>
        <form class="mainForm" action="#" name="editPostForm" ng-submit="editPostForm.$valid && editPost($event, user.id)" novalidate>
          <div class="form-group" ng-class="{'has-error': editPostForm.title.$touched && editPostForm.title.$invalid, 'has-success': editPostForm.title.$touched && editPostForm.title.$valid}">
@@ -169,8 +176,8 @@
      </div>
 
 
-     <div class="comment-form-div"ng-show="showmeCommentForm">
-       <form class="commentForm" action="#" name="commentForm" ng-submit="commentForm.$valid && submitFormComment($event, user.id)" novalidate>
+     <div class="add-comment-form" ng-show="showmeCommentForm">
+       <form action="#" name="commentForm" ng-submit="commentForm.$valid && submitFormComment($event, user.id)" novalidate>
          <input type="text"
          name="authorComment"
          ng-model="views.userCommentForm.author"
